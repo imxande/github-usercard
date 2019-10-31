@@ -61,7 +61,7 @@ const followersArray = [
 
 */
 // card creator function
-function cardCreator(arr){
+function cardCreator(obj){
   const newCardDiv = document.createElement('div');
   const new_img = document.createElement('img')
   const newCardInfo = document.createElement('div')
@@ -86,11 +86,24 @@ function cardCreator(arr){
   newCardInfo.appendChild(followingP);
   newCardInfo.appendChild(bioP);
 
+  // add classes
+  newCardDiv.classList.add('card');
+  newCardInfo.classList.add('card-info');
+  nameH3.classList.add('name');
+  paraP.classList.add('username');
 
+ // set text content
+ new_img.src = obj.avatar_url;
+ nameH3.textContent = obj.name;
+ paraP.textContent = obj.username;
+ locationP.textContent = obj.location;
+ profileP.textContent= 'Profile: ';
+ linkA.href = obj.url;
+ followerP.textContent = obj.followers_url;
+ followingP.textContent = obj.following_url;
+ bioP.textContent = obj.bio;
 
-
-  
-
+return newCardDiv;
 }
 
 
