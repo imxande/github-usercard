@@ -62,8 +62,8 @@ const followersArray = [
 */
 // card creator function
 function cardCreator(arr){
-  const newCard = document.createElement('div');
-  const newImg = document.createElement('img')
+  const newCardDiv = document.createElement('div');
+  const new_img = document.createElement('img')
   const newCardInfo = document.createElement('div')
   const nameH3 = document.createElement('h3');
   const paraP = document.createElement('p');
@@ -74,6 +74,22 @@ function cardCreator(arr){
   const followingP = document.createElement('p');
   const bioP = document.createElement('p');
 
+  // set up structure
+  newCardDiv.appendChild(new_img);
+  newCardDiv.appendChild(newCardInfo);
+  newCardInfo.appendChild(nameH3);
+  newCardInfo.appendChild(paraP);
+  newCardInfo.appendChild(locationP);
+  newCardInfo.appendChild(profileP);
+  profileP.appendChild(linkA);
+  newCardInfo.appendChild(followerP);
+  newCardInfo.appendChild(followingP);
+  newCardInfo.appendChild(bioP);
+
+
+
+
+  
 
 }
 
