@@ -3,11 +3,28 @@
            https://api.github.com/users/<your name>
 */
 
+  // ============= Selecting the class cards ============
+  const myCard = document.querySelector('.cards');
+
+  
 axios.get("https://api.github.com/users/imxande")
+
 .then(response => {
   const usersData = response.data;
   console.log(usersData);
-  });
+  const newcard = cardCreator(response.data);
+  
+  myCard.appendChild(newcard);
+});
+
+
+  // newCard.appendChild(cardCreator(usersData));
+// usersData.map((item)=>{
+//   console.log(item);
+// })
+
+  
+
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
    data in order to use it to build your component function 
@@ -41,6 +58,7 @@ const followersArray = [
   'davidhennig'
 ];
 
+
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -60,6 +78,9 @@ const followersArray = [
 </div>
 
 */
+
+
+
 // card creator function
 function cardCreator(obj){
   const newCardDiv = document.createElement('div');
@@ -81,7 +102,7 @@ function cardCreator(obj){
   newCardInfo.appendChild(paraP);
   newCardInfo.appendChild(locationP);
   newCardInfo.appendChild(profileP);
-  profileP.appendChild(linkA);
+  newCardInfo.appendChild(linkA);
   newCardInfo.appendChild(followerP);
   newCardInfo.appendChild(followingP);
   newCardInfo.appendChild(bioP);
@@ -95,14 +116,18 @@ function cardCreator(obj){
  // set text content
  new_img.src = obj.avatar_url;
  nameH3.textContent = obj.name;
- paraP.textContent = obj.username;
+ paraP.textContent = obj.login;
  locationP.textContent = obj.location;
- profileP.textContent= 'Profile: ';
- linkA.href = obj.url;
- followerP.textContent = obj.followers_url;
- followingP.textContent = obj.following_url;
+ profileP.textContent= `Profile: `;
+ linkA.setAttribute("href", obj.html_url);
+ linkA.textContent = obj.html_url;
+ followerP.textContent = `Followers: ${obj.followers}`;
+ followingP.textContent = `Following: ${obj.following}`;
  bioP.textContent = obj.bio;
-
+ 
+// adding a bit of style
+linkA.style.fontSize = "20px";
+ 
 return newCardDiv;
 }
 
@@ -114,3 +139,15 @@ return newCardDiv;
   luishrd
   bigknell
 */
+
+followersArray = axios.get("https://api.github.com/users/imxande/followers")
+.then(response => {
+
+  response.data.forEach(follower =>
+    axios
+      .get(`https://api.github.com/users/${follower.login}`)
+      .then(response => {
+        myCard.appendChild(cardCreator(response.data));
+      })
+  );
+})
