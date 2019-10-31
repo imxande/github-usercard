@@ -60,6 +60,23 @@ const followersArray = [
 </div>
 
 */
+// card creator function
+function cardCreator(arr){
+  const newCard = document.createElement('div');
+  const newImg = document.createElement('img')
+  const newCardInfo = document.createElement('div')
+  const nameH3 = document.createElement('h3');
+  const paraP = document.createElement('p');
+  const locationP = document.createElement('p');
+  const profileP = document.createElement('p');
+  const linkA = document.createElement('a'); 
+  const followerP = document.createElement('p');
+  const followingP = document.createElement('p');
+  const bioP = document.createElement('p');
+
+
+}
+
 
 /* List of LS Instructors Github username's: 
   tetondan
