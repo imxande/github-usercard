@@ -11,7 +11,7 @@ axios.get("https://api.github.com/users/imxande")
 
 .then(response => {
   const usersData = response.data;
-  console.log(usersData);
+  // console.log(usersData);
   const newcard = cardCreator(response.data);
   
   myCard.appendChild(newcard);
@@ -95,17 +95,7 @@ function cardCreator(obj){
   const followingP = document.createElement('p');
   const bioP = document.createElement('p');
 
-  // set up structure
-  newCardDiv.appendChild(new_img);
-  newCardDiv.appendChild(newCardInfo);
-  newCardInfo.appendChild(nameH3);
-  newCardInfo.appendChild(paraP);
-  newCardInfo.appendChild(locationP);
-  newCardInfo.appendChild(profileP);
-  newCardInfo.appendChild(linkA);
-  newCardInfo.appendChild(followerP);
-  newCardInfo.appendChild(followingP);
-  newCardInfo.appendChild(bioP);
+  
 
   // add classes
   newCardDiv.classList.add('card');
@@ -125,6 +115,18 @@ function cardCreator(obj){
  followingP.textContent = `Following: ${obj.following}`;
  bioP.textContent = obj.bio;
  
+ // set up structure
+ newCardDiv.appendChild(new_img);
+ newCardDiv.appendChild(newCardInfo);
+ newCardInfo.appendChild(nameH3);
+ newCardInfo.appendChild(paraP);
+ newCardInfo.appendChild(locationP);
+ newCardInfo.appendChild(profileP);
+ profileP.appendChild(linkA);
+ newCardInfo.appendChild(followerP);
+ newCardInfo.appendChild(followingP);
+ newCardInfo.appendChild(bioP);
+
 // adding a bit of style
 linkA.style.fontSize = "20px";
  
